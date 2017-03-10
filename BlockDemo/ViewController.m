@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "FirstViewController.h"
 @interface ViewController ()
 
 @end
@@ -17,6 +17,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    UIButton * button = [UIButton buttonWithType:UIButtonTypeSystem];
+    button.frame = CGRectMake(100, 100, 100, 50);
+    [button setTitle:@"点击跳转页面" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+
+}
+-(void)click{
+    
+    FirstViewController * first = [[FirstViewController alloc]init];
+    
+    first.block = ^(UIColor *color){
+        
+        self.view.backgroundColor =color ;
+        
+    };
+    [self presentViewController:first animated:YES completion:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
